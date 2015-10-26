@@ -5,6 +5,7 @@ import * as regExpExtended from './lib/regExpExtended';
 import * as numberExtended from './lib/numberExtended';
 import * as arrayExtended from './lib/arrayExtended';
 import * as functionExtended from './lib/functionExtended';
+import * as objectExtended from './lib/objectExtended';
 
 import {Cat} from './cat';
 import * as es5 from './es5Module'

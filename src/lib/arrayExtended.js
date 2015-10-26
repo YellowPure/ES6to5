@@ -36,8 +36,10 @@ function countSymbols(string) {
 // Array.of方法用于将一组值，转换为数组
 Array.of(3, 23, 5) //[3,23,5]
 
-// Array.copyWithin
-// 数组实例的copyWithin方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组
+/**
+ * Array.copyWithin
+ * 数组实例的copyWithin方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组
+ *  */ 
 var ar = [1, 2, 3, 4, 5];
 ar.copyWithin(4, 0);//[1,2,3,4,1,2]
 
@@ -53,14 +55,19 @@ findarr.find(function (value, index, arr) {
     return value > 9;
 });// 2
 
-// fill方法使用给定值，填充一个数组 
+/**
+ * Array.fill()
+ * fill方法使用给定值，填充一个数组
+ *  */  
 
 ['a', 'b', 'c'].fill(7);
 // [7,7,7]
 new Array(3).fill(7); // [7,7,7]
 ['a', 'b', 'c'].fill(9, 0, 1); // [7,'b','c']
 
-// entries(),keys(),values() 遍历数组
+/**
+ * entries(),keys(),values() 遍历数组
+ *  */ 
 
 for (let index of ['a', 'b'].keys()) {
     console.log(index); // 0, 1

@@ -145,3 +145,101 @@ insert(2).into([1,3]).after(1);//[1,2,3]
 const plus1 = a=> a+1;
 const mult2 = a => a*2;
 mult2(plus1(5));
+
+// 函数绑定 ES7 babel已实现 需打开实验性开关
+
+var part = '123';
+
+var _fo = {
+    part:'456'
+}
+
+function bar() {
+    console.log(this.part);
+    return this.part;
+}
+// _fo::bar;
+// 等同于
+// bar.call(foo);
+
+// 尾调用优化
+// 指某个函数的最后一步是调用另一个函数
+function ff(x) {
+    return g(x);
+};
+// 不属于的情况
+/*
+function ff(x) {
+    return g(x)+1;
+}
+function ff(x) {
+    let r = g(x);
+    return r; 
+}
+function ff(x) {
+    g(x);
+}
+*/
+var g = function(x) {
+    return x;
+}
+
+function _f() {
+    let m = 1;
+    let n = 2;
+    return g(m+n);
+}
+_f();
+// 等同于
+function _f() {
+    return g(3);
+}
+_f();
+// 等同于
+g(3);
+// 这就叫做“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。
+
+/**
+ * 尾递归
+ *  
+ * */ 
+ function factorial(n) {
+     if(n===1)return 1;
+     return n*factorial(n-1);
+ }
+ factorial(5);
+//  递归优化后只保留了一个调用记录
+ function factorial1(n,total) {
+     if(n === 1) return total;
+     return factorial(n-1, n*total);
+ }
+factorial1(5,1);
+// 额外的函数来转化成单函数
+function tailFactorial(n,total) {
+    if (n===1) return total;
+    return tailFactorial(n-1,n*total);
+}
+function factorial2(n){
+    return tailFactorial(n,1);
+}
+factorial2(5);
+// 柯里化 currying 将多参数的函数转换成单参数的形式
+function currying(fn,n) {
+    return function(m){
+        return fn.call(this,m,n);
+    }
+}
+
+function tailFactorial2(n,total) {
+    if (n ===1) return total;
+    return tailFactorial2(n-1,n*total);
+}
+const factorial3 = currying(tailFactorial2,1);
+
+factorial3(5);
+// ES6 方法
+function factorial4(n,total = 1){
+    if (n===1) return total;
+    return factorial4(n-1,n*total);
+}
+factorial4(5);
