@@ -67,7 +67,7 @@ function trusty(left, right, result) {
     if (Number.isSafeInteger(left) && Number.isSafeInteger(right) && Number.isSafeInteger(result)) {
         return result;
     }
-    throw new RangeError('Operation connot be trusted!');
+    new RangeError('Operation connot be trusted!');
 }
 trusty(9007199254740993, 990, 9007199254740993 - 990)
 // RangeError: Operation cannot be trusted!
@@ -147,7 +147,7 @@ Math.log10()
 // Math.log2(x)返回以2为底的x的对数。如果x小于0，则返回NaN。
 Math.log2()
 
-// 2 ** 2 //4 babel未实现
+console.log(2 ** 2, '2**2'); 
 // 双xxx
 // Math.sinh,Math.cosh,Math.asinh,Math.acosh,Math.tanh,Math.atanh
 

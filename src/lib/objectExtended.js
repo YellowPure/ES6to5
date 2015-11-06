@@ -1,17 +1,17 @@
-function getPoint(){
+function getPoint() {
     let x = 1;
     let y = 10;
-    console.log({x,y});
-    return {x,y};
+    console.log({ x, y });
+    return { x, y };
 }
 getPoint();//{x:1,y:10}
 
 var ms = {};
 function getItem(key) {
-    return key in ms ? ms[key]:null;
+    return key in ms ? ms[key] : null;
 }
 
-function setItem(key,value) {
+function setItem(key, value) {
     ms[key] = value;
 }
 
@@ -20,14 +20,14 @@ function clear() {
 }
 
 export {
-    getPoint,
-    getItem,
-    setItem,
-    clear
+getPoint,
+getItem,
+setItem,
+clear
 }
 // 属性表达式
 let obj = {
-    ['he'+'llo']() {
+    ['he' + 'llo']() {
         return 'hi'
     }
 }
@@ -43,21 +43,21 @@ clear.name; // 'clear'
 const key1 = Symbol('description');
 const key2 = Symbol();
 let obj1 = {
-    [key1]() {},
-    [key2]() {}
+    [key1]() { },
+    [key2]() { }
 }
 obj1[key1].name; // 'description'
 obj1[key2].name; // ''
 
 // Object.is 比较两个值是否严格相等 和===的行为基本一致
-Object.is('foo','foo'); // true
-Object.is({},{}); // false
+Object.is('foo', 'foo'); // true
+Object.is({}, {}); // false
 
 +0 === -0; //true
 NaN === NaN; //false
 
-Object.is(+0,-0); //false
-Object.is(NaN,NaN); // true
+Object.is(+0, -0); //false
+Object.is(NaN, NaN); // true
 
 /**
  * Object.assign
@@ -67,31 +67,31 @@ Object.is(NaN,NaN); // true
  * 对于嵌套的对象，Object.assign的处理方法是替换
  * Symbol值的属性也会被拷贝
  */
-var target = {a:1};
-var source1 = {b:2};
-var source2 = {c:3};
-Object.assign(target,source1,source2);
+var target = { a: 1 };
+var source1 = { b: 2 };
+var source2 = { c: 3 };
+Object.assign(target, source1, source2);
 target; // {a:1,b:2,c:3}
 
-source2.d = 4,source2.c = 4;
-Object.assign(target,source2);
+source2.d = 4, source2.c = 4;
+Object.assign(target, source2);
 target;//{a:1,b:2,c:4,d:4}
 
-source2.a = {b:'hello'};
-Object.assign([0,1,2],[4,5]); // [4,5,2] 把数组视为属性名为 0,1,2的对象,目标数组的0号属性4覆盖了0号属性0
+source2.a = { b: 'hello' };
+Object.assign([0, 1, 2], [4, 5]); // [4,5,2] 把数组视为属性名为 0,1,2的对象,目标数组的0号属性4覆盖了0号属性0
 
 // 为对象添加属性
-class Point{
-    constructor(x = 1,y = 2) {
-        Object.assign(this,{x,y});
+class Point {
+    constructor(x = 1, y = 2) {
+        Object.assign(this, { x, y });
     }
     out() {
-        return this.x,this.y;
+        return this.x, this.y;
     }
 }
 // 为对象添加方法
 
-Object.assign(Point.prototype,{
+Object.assign(Point.prototype, {
     out1() {
         return 'hello'
     }
@@ -101,28 +101,28 @@ console.log(p.out1);
 // 克隆对象
 function clone(origin) {
     let originProto = Object.getPrototypeOf(origin);
-    return Object.assign(Object.create(originProto),origin);
+    return Object.assign(Object.create(originProto), origin);
 }
 // 合并多个对象
-const merge = (target,...sources) => Object.assign({},...sources);
+const merge = (target, ...sources) => Object.assign({}, ...sources);
 // 返回一个新对象
-const merge1 = (...sources) =>Object.assign({},...sources);
+const merge1 = (...sources) => Object.assign({}, ...sources);
 
 // 为属性指定默认值
 const DEFAULTS = {
-    logLevel:0,
-    outputFormat:'html'
+    logLevel: 0,
+    outputFormat: 'html'
 };
 function processContent(options) {
-    let _options = Object.assign({},DEFAULTS,options);
+    let _options = Object.assign({}, DEFAULTS, options);
 }
 
 /**
  * 属性可枚举性
  * Object.getOwnPropertyDescriptor
  */
-let _obj = {foo:123};
-Object.getOwnPropertyDescriptor(_obj,'foo');
+let _obj = { foo: 123 };
+Object.getOwnPropertyDescriptor(_obj, 'foo');
 // {
 //     value:'123',
 //     writable:true,
@@ -137,10 +137,10 @@ Object.getOwnPropertyDescriptor(_obj,'foo');
 /**
  * Object.setPrototypeOf 设置原型对象方法
  * 设置proto对象为o对象的原型
-   */ 
+   */
 let proto = {};
-let o = {x:10};
-Object.setPrototypeOf(o,proto);
+let o = { x: 10 };
+Object.setPrototypeOf(o, proto);
 proto.y = 20;
 proto.z = 2;
 o;// {x:10,y:20,z:2}
@@ -150,11 +150,11 @@ o;// {x:10,y:20,z:2}
  *  */
 
 function Rectangle() {
-    
+
 };
 var rect = new Rectangle();
 Object.getPrototypeOf(rect) === Rectangle.prototype // true
-Object.setPrototypeOf(rect,Object.prototype);
+Object.setPrototypeOf(rect, Object.prototype);
 Object.getPrototypeOf(rect) === Rectangle.prototype; // false
 
 /**
@@ -172,51 +172,51 @@ Object.getPrototypeOf(rect) === Rectangle.prototype; // false
  */
 
 var user = {};
-Object.observe(user,function(changes){
-    changes.forEach(function(change){
-        console.log('发生变动的属性：'+change.name);
-        console.log('变动前的值：'+change.oldValue);
-        console.log('变动后的值：'+change.object[change.name]);
-        console.log('变动类型：'+change.type);
+Object.observe(user, function (changes) {
+    changes.forEach(function (change) {
+        console.log('发生变动的属性：' + change.name);
+        console.log('变动前的值：' + change.oldValue);
+        console.log('变动后的值：' + change.object[change.name]);
+        console.log('变动类型：' + change.type);
     });
-},['add','delete']);
+}, ['add', 'delete']);
 user.firstName = 'Jordan';
 user.secondName = 'Michael';
 var _o = {};
-function observe(changes){
-    changes.forEach(function(change){
+function observe(changes) {
+    changes.forEach(function (change) {
         console.log(change.name);
     })
 }
-Object.observe(_o,observe);
-Object.unobserve(_o,observe);
+Object.observe(_o, observe);
+Object.unobserve(_o, observe);
 
 // rest参数拷贝是浅拷贝
-let {x,y,...z} = {x:1,y:3,a:4,b:5,c:6};
+let {x, y,...z} = { x: 1, y: 3, a: 4, b: 5, c: 6 };
 // x:1 y:2 z:{a:4,b:5,c:6}
 
-let jbo = {a:{b:1}};
+let jbo = { a: { b: 1 } };
 let {..._x} = jbo;
 jbo.a.b = 2;
 _x.a.b; // 2
 // Rest参数不会拷贝继承自原型对象的属性
-let o1 = {a:1};
-let o2 = {a:2};
+let o1 = { a: 1 };
+let o2 = { a: 2 };
 o2.__proto__ = o1;
-let o3 = {...o2};
+let o3 = {...o2 };
 o3.a; // 2 
 
 // 扩展运算符
-let _z = {a:3,b:4};
-let n = {..._z};
+let _z = { a: 3, b: 4 };
+let n = {..._z };
 
-let aClone = {..._z};
+let aClone = {..._z };
 // 等同于
-aClone = Object.assign({},_z);
+aClone = Object.assign({}, _z);
 
-let aWithOverrides = {...aClone,x:1,y:2};
+let aWithOverrides = {...aClone, x: 1, y: 2 };
 // 等同于
-aWithOverrides = Object.assign({},aClone,{x:1,y:2}); // a的x和y属性会被覆盖
+aWithOverrides = Object.assign({}, aClone, { x: 1, y: 2 }); // a的x和y属性会被覆盖
 
 // 扩展运算符的参数是null或者undefined 值会被忽略 不会报错
-let emptyObject = {...null,...undefined};
+let emptyObject = {...null,...undefined };

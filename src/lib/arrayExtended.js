@@ -1,4 +1,4 @@
-
+"use strict";
 // Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）
 console.log(Array.from('hello'));
 
@@ -39,7 +39,7 @@ Array.of(3, 23, 5) //[3,23,5]
 /**
  * Array.copyWithin
  * 数组实例的copyWithin方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组
- *  */ 
+ *  */
 var ar = [1, 2, 3, 4, 5];
 ar.copyWithin(4, 0);//[1,2,3,4,1,2]
 
@@ -58,7 +58,7 @@ findarr.find(function (value, index, arr) {
 /**
  * Array.fill()
  * fill方法使用给定值，填充一个数组
- *  */  
+ *  */
 
 ['a', 'b', 'c'].fill(7);
 // [7,7,7]
@@ -67,7 +67,7 @@ new Array(3).fill(7); // [7,7,7]
 
 /**
  * entries(),keys(),values() 遍历数组
- *  */ 
+ *  */
 
 for (let index of ['a', 'b'].keys()) {
     console.log(index); // 0, 1
@@ -80,13 +80,13 @@ if (['a', 'b'].values) {
         console.log(elem); // a, b
     }
 } else {
-    throw new RangeError('not support values');
+    new RangeError('not support values');
 }
 
 
 for (let [index, value] of ['a', 'b'].entries()) {
     console.log(index, value); // 0 'a', 1 'b'
-}
+};
 
 // includes方法返回一个布尔值，表示某个数组是否包含给定的值
 

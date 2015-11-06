@@ -1,18 +1,19 @@
 {
-    "name": "ES6 To ES5 use babel",
+    "name": "ES6To5",
     "version": "1.0.0",
     "description": " it's transfer ES6 code to ES5 by use babel,and a lot of ES6 research.",
     "keywords": [
         "ES6To5"
     ],
     "dependencies": {
-        "babel": "*",
-        "babel-core": "*"
+        "babel": "latest",
+        "babel-core": "latest"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/YellowPure/ES6to5"
     },
     "author": "lovepure",
-    "license": "MIT"
+    "license": "MIT",
+    "private": "true"
 }

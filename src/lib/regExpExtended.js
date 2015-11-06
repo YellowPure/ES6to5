@@ -1,6 +1,6 @@
 
-// babel 不支持 正则表达式第二个参数重新指定修饰符
-// new RegExp(/abc/ig,'i').flags;
+// 正则表达式第二个参数重新指定修饰符
+console.log(new RegExp(/abc/ig, 'i').flags, 'regexp flags');
 // u修饰符 将字符识别为一个字符
 /^\uD83D/u.test('\uD83D\uDC2A'); // false
 /^\uD83D/.test('\uD83D\uDC2A'); // true
@@ -45,7 +45,7 @@ codePointLength(s); // 2
 var s = "aaa_aa_a";
 var r1 = /a+/g;
 // var r2 = /a+/y; // 报错 babel未实现
-// flags属性，会返回正则表达式的修饰符 babel未实现
+// flags属性，会返回正则表达式的修饰符 
 console.log(r1.source, r1.flags, r1.sticky);
 // r2.sticky // true
 
