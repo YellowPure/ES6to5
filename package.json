@@ -7,7 +7,8 @@
     ],
     "dependencies": {
         "babel": "latest",
-        "babel-core": "latest"
+        "babel-core": "latest",
+        "babel-polyfill": "latest"
     },
     "repository": {
         "type": "git",

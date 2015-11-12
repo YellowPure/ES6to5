@@ -6,8 +6,10 @@ import * as arrayExtended from './lib/arrayExtended';
 import * as functionExtended from './lib/functionExtended';
 import * as objectExtended from './lib/objectExtended';
 import * as symbol from './lib/symbol.js';
-import * as setAndMap from './lib/setAndMap.js'
-import * as iterator from './lib/iterator.js'
+import * as setAndMap from './lib/setAndMap.js';
+import * as iterator from './lib/iterator.js';
+import * as generator from './lib/generator.js';
+import * as promise from './lib/promise.js';
 // import * as proxy from './lib/proxy.js';
 
 import {Cat} from './cat';
